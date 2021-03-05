@@ -1,0 +1,8 @@
+<!DOCTYPE FilterScript>
+<FilterScript>
+ <filter name="Subdivision Surfaces: Butterfly Subdivision">
+  <Param value="3" name="Iterations" type="RichInt" description="Iterations" tooltip="Number of time the model is subdivided."/>
+  <Param min="0" value="0.32162" name="Threshold" type="RichAbsPerc" description="Edge Threshold" max="32.1624" tooltip="All the edges &lt;b>longer&lt;/b> than this threshold will be refined.&lt;br>Setting this value to zero will force an uniform refinement."/>
+  <Param value="false" name="Selected" type="RichBool" description="Affect only selected faces" tooltip="If selected the filter affect only the selected faces"/>
+ </filter>
+</FilterScript>

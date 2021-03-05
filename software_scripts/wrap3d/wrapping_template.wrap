@@ -1,0 +1,325 @@
+{
+    "formatVersion": 5,
+    "nodes": {
+        "SaveGeom": {
+            "color": {
+                "a": 0,
+                "b": 0,
+                "g": 0,
+                "r": 0
+            },
+            "hasColor": false,
+            "isAlwaysVisible": true,
+            "nodeId": 3,
+            "nodeType": "SaveGeom",
+            "params": {
+                "fileName": {
+                    "dataType": "String",
+                    "value": "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_WQ_SIMPLE_0_bone/wrap/##.obj"
+                },
+                "geom": {
+                    "connectedNodeId": 2,
+                    "dataType": "Geometry"
+                },
+                "includeTransform": {
+                    "dataType": "Boolean",
+                    "value": true
+                },
+                "saveNormals": {
+                    "dataType": "Boolean",
+                    "value": true
+                }
+            },
+            "x": -87,
+            "y": 31
+        },
+        "Wrapping": {
+            "color": {
+                "a": 0,
+                "b": 0,
+                "g": 0,
+                "r": 0
+            },
+            "hasColor": false,
+            "isAlwaysVisible": true,
+            "nodeId": 2,
+            "nodeType": "Wrapping",
+            "params": {
+                "autocompute": {
+                    "dataType": "Boolean",
+                    "value": false
+                },
+                "geomFixed": {
+                    "connectedNodeId": 1,
+                    "dataType": "Geometry"
+                },
+                "geomFloating": {
+                    "connectedNodeId": 0,
+                    "dataType": "Geometry"
+                },
+                "globalControlPointsWeightFinal": {
+                    "dataType": "Float",
+                    "value": 10
+                },
+                "globalControlPointsWeightInitial": {
+                    "dataType": "Float",
+                    "value": 10
+                },
+                "globalPoint2PlaneFittingWeight": {
+                    "dataType": "Float",
+                    "value": 1
+                },
+                "globalPoint2PointFittingWeight": {
+                    "dataType": "Float",
+                    "value": 0.10000000149011612
+                },
+                "globalSmoothWeightMax": {
+                    "dataType": "Float",
+                    "value": 1
+                },
+                "globalSmoothWeightMin": {
+                    "dataType": "Float",
+                    "value": 0.05000000074505806
+                },
+                "maxDp": {
+                    "dataType": "Float",
+                    "value": 0.009999999776482582
+                },
+                "maxOptimizationIterations": {
+                    "dataType": "Integer",
+                    "value": 100
+                },
+                "minCosBetweenNormals": {
+                    "dataType": "Float",
+                    "value": 0.6499999761581421
+                },
+                "minDp": {
+                    "dataType": "Float",
+                    "value": 0.0020000000949949026
+                },
+                "nICPIterations": {
+                    "dataType": "Integer",
+                    "value": 5
+                },
+                "nNodesToUse": {
+                    "dataType": "Integer",
+                    "value": 8
+                },
+                "nOptimizationIterations": {
+                    "dataType": "Integer",
+                    "value": 20
+                },
+                "nSubdivisions": {
+                    "dataType": "Integer",
+                    "value": 3
+                },
+                "points": {
+                    "dataType": "PointCorrespondences",
+                    "value": {
+                        "first": [],
+                        "second": []
+                    }
+                },
+                "polygons": {
+                    "dataType": "PolygonSelection",
+                    "value": []
+                },
+                "samplingMaxMultiplier": {
+                    "dataType": "Float",
+                    "value": 5
+                },
+                "samplingMinMultiplier": {
+                    "dataType": "Float",
+                    "value": 0.20000000298023224
+                }
+            },
+            "x": -87,
+            "y": -69
+        },
+        "capture_bone": {
+            "color": {
+                "a": 0,
+                "b": 0,
+                "g": 0,
+                "r": 0
+            },
+            "hasColor": false,
+            "isAlwaysVisible": true,
+            "nodeId": 1,
+            "nodeType": "LoadGeom",
+            "params": {
+                "fileNames": {
+                    "dataType": "StringList",
+                    "value": [
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/01.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/02.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/03.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/04.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/05.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/06.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/07.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/08.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/09.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/10.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/11.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/12.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/13.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/14.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/15.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/16.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/17.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/18.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/19.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all_s0/t1/t1_ZL_SIMPLE_0_bone/20.obj"
+                    ]
+                },
+                "texture": {
+                    "dataType": "Image"
+                },
+                "transform": {
+                    "dataType": "Transform",
+                    "value": {
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotationQuat": {
+                            "scalar": 1,
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "scale": 1,
+                        "translation": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                },
+                "visualParam": {
+                    "dataType": "VisualParam",
+                    "value": {
+                        "colorBack": {
+                            "b": 85,
+                            "g": 85,
+                            "r": 85
+                        },
+                        "colorFront": {
+                            "b": 255,
+                            "g": 129,
+                            "r": 61
+                        },
+                        "colorWire": {
+                            "b": 34,
+                            "g": 26,
+                            "r": 17
+                        },
+                        "isLightingEnabled": true,
+                        "isSurfaceEnabled": true,
+                        "isWireframeEnabled": true,
+                        "surfaceFillType": 1
+                    }
+                }
+            },
+            "x": 25,
+            "y": -198
+        },
+        "template_bone": {
+            "color": {
+                "a": 0,
+                "b": 0,
+                "g": 0,
+                "r": 0
+            },
+            "hasColor": false,
+            "isAlwaysVisible": true,
+            "nodeId": 0,
+            "nodeType": "LoadGeom",
+            "params": {
+                "fileNames": {
+                    "dataType": "StringList",
+                    "value": [
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/01.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/02.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/03.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/04.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/05.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/06.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/07.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/08.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/09.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/10.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/11.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/12.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/13.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/14.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/15.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/16.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/17.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/18.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/19.obj",
+                        "E:/LIYUWEI/hand_mri/Seafile/seg_all/t1_rest/t1_ZL_SIMPLE_0_bone/align_nonrigid_pose/20.obj"
+                    ]
+                },
+                "texture": {
+                    "dataType": "Image"
+                },
+                "transform": {
+                    "dataType": "Transform",
+                    "value": {
+                        "offset": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "rotationQuat": {
+                            "scalar": 1,
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        },
+                        "scale": 1,
+                        "translation": {
+                            "x": 0,
+                            "y": 0,
+                            "z": 0
+                        }
+                    }
+                },
+                "visualParam": {
+                    "dataType": "VisualParam",
+                    "value": {
+                        "colorBack": {
+                            "b": 85,
+                            "g": 85,
+                            "r": 85
+                        },
+                        "colorFront": {
+                            "b": 255,
+                            "g": 129,
+                            "r": 61
+                        },
+                        "colorWire": {
+                            "b": 34,
+                            "g": 26,
+                            "r": 17
+                        },
+                        "isLightingEnabled": true,
+                        "isSurfaceEnabled": true,
+                        "isWireframeEnabled": true,
+                        "surfaceFillType": 1
+                    }
+                }
+            },
+            "x": -198,
+            "y": -198
+        }
+    },
+    "timeline": {
+        "current": 0,
+        "max": 25,
+        "min": 0
+    }
+}

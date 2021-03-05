@@ -1,0 +1,7 @@
+<!DOCTYPE FilterScript>
+<FilterScript>
+ <filter name="Conditional Vertex Selection">
+  <Param type="RichString" description="boolean function" tooltip="type a boolean function that will be evaluated in order to select a subset of vertices&lt;br>example: (y > 0) and (ny > 0)" value="(x>11.5 || x&lt;-19.5)|| (y>17|| y&lt;-17) || (z>20 || z&lt;-5)" name="condSelect"/>
+ </filter>
+ <filter name="Delete Selected Vertices"/>
+</FilterScript>

@@ -1,0 +1,9 @@
+<ModelExport exportBinary="0" exportInfoFile="1" exportVertices="1" exportVertexColors="0"
+   exportVertexNormals="0" exportTriangles="1" exportTexturing="1" meshColor="4294967295"
+   tileType="0" exportTextureAlpha="0" exportToOneTexture="0" oneTextureMaxSide="0"
+   oneTextureUsePow2TexSide="0" exportCoordinateSystemType="0" settingsAnchor="0 0 0"
+   settingsScalex="1" settingsScaley="1" settingsScalez="1" texturesFileType="png"
+   formatAndVersionUID="obj 000 " exportModelByParts="0" exportRandomPartColor="0"
+   exportCameras="0" exportCamerasAsModelPart="0" numberAsciiFormatting="%.16e">
+  <Header magic="5786949" version="1"/>
+</ModelExport>
