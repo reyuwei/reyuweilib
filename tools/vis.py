@@ -18,7 +18,7 @@ def visual_weights(bone_obj, bone_pts_weights):
 
     label_list = np.argmax(bone_pts_weights, axis=1)
     bone_num = bone_pts_weights.shape[-1]
-    if isinstance(bone_obj, np.array):
+    if isinstance(bone_obj, np.ndarray):
         rgb = np.stack([colorsys.hsv_to_rgb(i * 1.0 / bone_num, 0.8, 0.8) for i in label_list])
         a = np.ones([rgb.shape[0], 1])
         rgba = np.hstack([rgb, a])

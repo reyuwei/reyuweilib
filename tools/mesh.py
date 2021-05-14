@@ -1,7 +1,81 @@
-import trimesh
 import numpy as np
+import trimesh
 import torch
 from scipy.spatial.transform import Rotation
+
+
+def mesh2grid(mesh_verts, slices=None, spacing=[0.5, 0.5, 0.5]):
+    """
+    Create an AABB grid from the mesh_verts. Use slices or spacing to control sampling density.
+    !Slices has higher priority over spacing!
+
+    Parameters
+    ----------
+    mesh_verts : (np.array, [N,3]) 3D vertices
+    slices : (int) How many slices per edge
+    spacing : (np.array, [3,]) sampling spacing
+
+    Returns
+    ----------
+    grid vertices : (np.array, [D, H, W, 3])
+    meta: spacing/direction/origin of this grid, for creating SimpleITK.Image
+    """
+
+    pt = mesh_verts.squeeze()
+    xyz = np.array(pt)
+    max_xyz = np.max(xyz, axis=0) + spacing[0] * 2
+    min_xyz = np.min(xyz, axis=0) - spacing[0] * 2
+    D, H, W = max_xyz
+    SD, SH, SW = min_xyz
+    if slices is not None:
+        ds = (D + 1e-5 - SD) / slices
+        hs = (H + 1e-5 - SH) / slices
+        ws = (W + 1e-5 - SW) / slices
+    else:
+        ds, hs, ws = spacing
+    x_ = np.arange(SD, D + 1e-5, step=ds, dtype=np.float32)
+    y_ = np.arange(SH, H + 1e-5, step=hs, dtype=np.float32)
+    z_ = np.arange(SW, W + 1e-5, step=ws, dtype=np.float32)
+    px, py, pz = np.meshgrid(x_, y_, z_, indexing='ij')
+    all_pts = np.stack([px, py, pz], -1)  # [slices, slices, slices, 3]
+
+    meta = {
+        "spacing": (ds, hs, ws),
+        "direction": np.eye(3),
+        "origin": all_pts[0,0,0],
+    }
+
+    return all_pts, meta
+
+def rbf_weights(volume, control_pts, control_pts_weights=None):
+    """
+    Compute 3D volume weight according to control points with rbf and "thin_plate" as kernel
+    if control_pts_weights is None, directly return control points influences
+
+    Parameters
+    ----------
+    volume : (np.array, [N,3]) volume points with unknown weights 
+    control_pts : (np.array, [M,3]) control points
+    control_pts_weights : (np.array, [M,K]) control point weights
+
+    Returns
+    ----------
+    volume_weights : np.array, [N,K]
+    """
+
+    if control_pts_weights is None:
+        control_pts_weights = np.eye(control_pts.shape[0])
+
+    xyz = volume.reshape(-1, 3)
+    chunk = 50000
+    rbfi = Rbf(control_pts[:, 0], control_pts[:, 1], control_pts[:, 2], control_pts_weights, function="thin_plate", mode="N-D")
+    # rbfi = Rbf(pts[:, 0], pts[:, 1], pts[:, 2], weight, function="multiquadric", mode="N-D")
+    weight_volume = np.concatenate([rbfi(xyz[j:j + chunk, 0], xyz[j:j + chunk, 1], xyz[j:j + chunk, 2]) for j in
+                                    range(0, xyz.shape[0], chunk)], 0)
+    weight_volume[weight_volume < 0] = 0
+    weight_volume = weight_volume / np.sum(weight_volume, axis=1).reshape(-1, 1)
+    weight_volume = weight_volume.reshape(xyz.shape[0], -1)
+    return weight_volume
 
 
 def joints2mesh_body(joints, sample=10, use_cylinder=False):

@@ -1,5 +1,4 @@
-camera/calib_transform/Agi2Folder/Calib_1226.xml
-camera/calib_transform/Agi2Folder/Calib_1226/*
 .vscode/*
 __pycache__
 *.pyc
+*.xml

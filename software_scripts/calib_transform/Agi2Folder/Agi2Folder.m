@@ -1,6 +1,6 @@
 clc;clear;
-save_dir = 'F:\OneDrive\Projects_ongoing\Github\reyuweilib\camera\calib_transform\Agi2Folder\Calib_1226';
-xml_path = 'F:\OneDrive\Projects_ongoing\Github\reyuweilib\camera\calib_transform\Agi2Folder\Calib_1226.xml';
+save_dir = 'C:\Users\liyuwei\Desktop\jiangying\calib0406\calib';
+xml_path = 'C:\Users\liyuwei\Desktop\jiangying\calib0406\agi.xml';
 xDoc  = xml2struct(xml_path);
 
 mkdir(save_dir);

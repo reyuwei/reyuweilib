@@ -8,8 +8,8 @@ image_size = [960,600];
 % folders_path =  'D:\Just\POSE\_DataForSiggraph_POSE\tools\OurMVS\Data\Calib\Calib_0513_multireso';
 % save_file = 'D:\Just\POSE\_DataForSiggraph_POSE\tools\OurMVS\Data\Calib\test_sportman_agi.xml';
 % image_size = [960,600]; % width - height
-folders_path = 'C:\Users\liyuwei\Desktop\real\girl_1_rotated\calib_folder';
-save_file = 'C:\Users\liyuwei\Desktop\real\girl_1_rotated\calib_folder\agi.xml';
+folders_path = 'C:\Users\liyuwei\Desktop\real\calib_1029\1_rotated\calib';
+save_file = 'C:\Users\liyuwei\Desktop\real\calib_1029\1_rotated\calib\agi.xml';
 % folders_path = 'L:\data\jiewu-skr\calib-0106';
 % save_file = 'L:\data\jiewu-skr\calib-0106.xml';
 

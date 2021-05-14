@@ -15,7 +15,7 @@ class Camera:
         K = K.reshape(3,3)
         R = R.reshape(3,3)
         t = t.reshape(3,1)
-        Rt = np.stack([R, t], axis=1)
+        Rt = np.concatenate([R, t], axis=1)
         return cls(K, Rt, w, h, name)
 
     @classmethod
