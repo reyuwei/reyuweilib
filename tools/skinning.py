@@ -25,7 +25,7 @@ def RBF_weights(volume, control_pts, weight=None):
     weight_volume = weight_volume.reshape(xyz.shape[0], -1)
     return weight_volume
 
-def joint_to_bone_mesh(joints, sample=10, use_cylinder=False):
+def body_joint_to_bone_mesh(joints, sample=10, use_cylinder=False):
     body_ske_namelist = {
     'head': [17,15,15,0,0,16,16,18],
     'RightArm': [2,3],
@@ -104,6 +104,116 @@ def joint_to_bone_mesh(joints, sample=10, use_cylinder=False):
     bone_ske_weight = np.stack(bone_ske_weight).reshape(-1, bone_num)
     return bone_ske, bone_ske_weight, keys, bone_num
 
+
+import torch
+def hand_joint_to_bone_mesh(hand_joints, sample=10, use_cylinder=False):
+    joint_count = hand_joints.shape[0]
+    bone_ske = []
+    bone_ske_weight = []
+
+    if joint_count == 21:  # mano
+        bone_count = 16
+        BONE_PARENT_LABEL_DICT = {
+            0: [-1, -1],
+            1: [0, 0],
+            2: [1, 13],
+            3: [2, 14],
+            4: [3, 15],
+            5: [0, 0],
+            6: [5, 1],
+            7: [6, 2],
+            8: [7, 3],
+            9: [0, 0],
+            10: [9, 4],
+            11: [10, 5],
+            12: [11, 6],
+            13: [0, 0],
+            14: [13, 10],
+            15: [14, 11],
+            16: [15, 12],
+            17: [0, 0],
+            18: [17, 7],
+            19: [18, 8],
+            20: [19, 9],
+        }
+        weight_bone_list = [
+            # 'Hand', 'HandIndex1', 'HandIndex2', 'HandIndex3',
+            # 'HandMiddle1', 'HandMiddle2', 'HandMiddle3',
+            # 'HandPinky1', 'HandPinky2', 'HandPinky3',
+            # 'HandRing1', 'HandRing2', 'HandRing3',
+            # 'HandThumb1', 'HandThumb2', 'HandThumb3',
+        ]
+    elif joint_count == 25:
+        bone_count = 25
+        BONE_PARENT_LABEL_DICT = {
+            0: [-1, -1],
+            1: [0, 0],
+            2: [1, 1],
+            3: [2, 2],
+            4: [3, 3],
+            5: [0, 0],
+            6: [5, 5],
+            7: [6, 6],
+            8: [7, 7],
+            9: [8, 8],
+            10: [0, 0],
+            11: [10, 10],
+            12: [11, 11],
+            13: [12, 12],
+            14: [13, 13],
+            15: [0, 0],
+            16: [15, 15],
+            17: [16, 16],
+            18: [17, 17],
+            19: [18, 18],
+            20: [0, 0],
+            21: [20, 20],
+            22: [21, 21],
+            23: [22, 22],
+            24: [23, 23],
+        }
+
+        weight_bone_list = [
+            # 'Hand_wrist',
+            # 'HandThumb1', 'HandThumb2', 'HandThumb3', '_end',
+            # 'HandIndex1', 'HandIndex2', 'HandIndex3','HandIndex4', '_end',
+            # 'HandMiddle1', 'HandMiddle2', 'HandMiddle3','HandMiddle4','_end',
+            # 'HandRing1', 'HandRing2', 'HandRing3', 'HandRing4','_end',
+            # 'HandPinky1', 'HandPinky2', 'HandPinky3','HandPinky4','_end',
+        ]
+
+    if isinstance(hand_joints, torch.Tensor):
+        hand_joints = hand_joints.numpy()
+    for i in range(1, hand_joints.shape[0]):
+        t = np.linspace(0.15, 0.85, sample).reshape(-1, 1)
+
+        joint_parent, joint_weight_id = BONE_PARENT_LABEL_DICT[i]
+        one_bone_line = hand_joints[i] + t * (hand_joints[joint_parent] - hand_joints[i])
+
+        # add cylinder
+        if use_cylinder:
+            bone_length = np.linalg.norm(hand_joints[joint_parent] - hand_joints[i])
+            cylinder = trimesh.primitives.Cylinder(height=bone_length * 9. / 10., radius=bone_length / 20.0, sections=8)
+            rot_target = (hand_joints[joint_parent] - hand_joints[i]) / bone_length
+            rot_from = cylinder.direction
+            rot_mat = np.eye(4)
+            rot_mat[:3, :3] = Rotation.align_vectors(rot_target[None, ...], rot_from[None, ...])[0].as_matrix()
+            cylinder.apply_transform(rot_mat)
+            cylinder.apply_translation((hand_joints[i] + hand_joints[joint_parent]) / 2)
+            bone_ske.append(np.vstack([cylinder.vertices, np.array(one_bone_line)]))
+            weights = np.zeros([t.shape[0] + cylinder.vertices.shape[0], bone_count])
+        else:
+            bone_ske.append(one_bone_line)
+            weights = np.zeros([t.shape[0], bone_count])
+
+        weights[:, joint_weight_id] = 1.0
+        bone_ske_weight.append(weights)
+
+    bone_ske = np.stack(bone_ske).reshape(-1, 3)
+    bone_ske_weight = np.stack(bone_ske_weight).reshape(-1, bone_count)
+    return bone_ske, bone_ske_weight
+
+
 if __name__ == "__main__":
     joints = np.loadtxt("C:\\Users\\liyuwei\\Desktop\\real\\calib_1029\\1_rotated\\openpose\\skeleton_body\\skeleton_fix.txt")
     ply = trimesh.load("C:\\Users\\liyuwei\\Desktop\\real\\calib_1029\\1_rotated\\mesh.obj", process=False)
@@ -122,7 +232,7 @@ if __name__ == "__main__":
     ply_verts = ply.vertices
     print(ply_verts.shape)
 
-    bone_ske, bone_ske_weight, bone_names, bone_num = joint_to_bone_mesh(joints, sample=15, use_cylinder=True)
+    bone_ske, bone_ske_weight, bone_names, bone_num = body_joint_to_bone_mesh(joints, sample=15, use_cylinder=True)
     ply_verts_weight = RBF_weights(ply_verts, bone_ske, bone_ske_weight)
     np.savetxt(savepath + "mesh_weight_rbf.txt", ply_verts_weight)
 
