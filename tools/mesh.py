@@ -2,7 +2,7 @@ import numpy as np
 import trimesh
 import torch
 from scipy.spatial.transform import Rotation
-
+from scipy.interpolate import Rbf
 
 def mesh2grid(mesh_verts, slices=None, spacing=[0.5, 0.5, 0.5]):
     """
