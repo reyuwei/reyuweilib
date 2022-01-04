@@ -1,6 +1,6 @@
 clc;clear;
-save_dir = 'C:\Users\liyuwei\Desktop\jiangying\calib0406\calib';
-xml_path = 'C:\Users\liyuwei\Desktop\jiangying\calib0406\agi.xml';
+save_dir = 'C:\Users\liyuwei\Desktop\calib_1121\calibfolder_1121';
+xml_path = 'C:\Users\liyuwei\Desktop\calib_1121\calib1121.xml';
 xDoc  = xml2struct(xml_path);
 
 mkdir(save_dir);
@@ -108,7 +108,7 @@ for i = 1:length(Cams)
     %str1 = strsplit(Cams{i}.label,'_');
     %str2 = strsplit(str1{3},'.');
     str2 = strsplit(Cams{i}.label,'.');
-    str = str2(2);
+    str = str2(1);
     
     intr = Cams{i}.Intr;
     extr = Cams{i}.Extr;
