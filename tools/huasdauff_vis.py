@@ -44,14 +44,24 @@ def hausdorff_distance_vismesh(ma:trimesh.Trimesh, mb:trimesh.Trimesh, min=0, ma
     max_h = 0 #red
     min_h = 0.667 #blue
     color_h = min_h - ratio * min_h
-
-    rgb = np.stack([colorsys.hsv_to_rgb(i, 1, 1) for i in color_h])
+    rgb = np.stack([colorsys.hsv_to_rgb(i, 1, 0.8) for i in color_h])
     a = np.ones([rgb.shape[0], 1])
     rgba = np.hstack([rgb, a])
     rgba *= 255.
-
     ma.visual.vertex_colors = rgba
-    return hd, ma, cham_x.numpy(), cham_y.numpy()
+
+    cham_y_clip = cham_y.clone()
+    cham_y_clip[cham_y_clip>max] = max
+    cham_y_clip[cham_y_clip<min] = min
+    ratio = (cham_y_clip - min) / (max-min)
+    color_h = min_h - ratio * min_h
+    rgb = np.stack([colorsys.hsv_to_rgb(i, 1, 0.8) for i in color_h])
+    a = np.ones([rgb.shape[0], 1])
+    rgba = np.hstack([rgb, a])
+    rgba *= 255.
+    mb.visual.vertex_colors = rgba
+
+    return hd, ma, mb, cham_x.numpy(), cham_y.numpy()
 
 def histogram_vis(data: np.ndarray, bins_c=50, lab='label'):
     import matplotlib.pyplot as plt
