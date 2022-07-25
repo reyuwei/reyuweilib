@@ -8,6 +8,9 @@
 - 同义词: [PoserThesaurus](https://www.powerthesaurus.org/)
 - 语法: [Grammarly](https://www.grammarly.com/)
 - 论文起名/缩写拼词: [Acronymify](https://acronymify.com/)
+- 句型 https://www.phrasebank.manchester.ac.uk/
+- 词典 https://wantwords.net/
+- 中文版grammaly https://xiezuocat.com/#/
 - Others：
   - 科研者之家 https://www.home-for-researchers.com/static/index.html#/
   - 万词王 https://wantwords.net/
